@@ -50,11 +50,59 @@ const Controls = ({ message, setMessage }) => {
     }
   };
 
+  const handleClick = () => {
+    var rotate = rotation;
+    const rotationDegree = Math.round(
+      ((rotate %= 360) < 0 ? rotate + 360 : rotate) / 90
+    );
+
+    switch (rotationDegree) {
+      case 0:
+        const xPosition = xPos + 1;
+        if (xPosition > 4) {
+          setMessage("Pacman cannot move further");
+          return false;
+        } else {
+          pacManPlacement(xPosition, yPos, rotate);
+        }
+        break;
+      case 1:
+        const yPosition = yPos + 1;
+        if (yPosition > 4) {
+          setMessage("Pacman cannot move further");
+          return false;
+        } else {
+          pacManPlacement(xPos, yPosition, rotate);
+        }
+        break;
+      case 2:
+        const x = xPos - 1;
+        if (x < 0) {
+          setMessage("Pacman cannot move further");
+          return false;
+        } else {
+          pacManPlacement(x, yPos, rotate);
+        }
+        break;
+      case 3:
+        const y = yPos - 1;
+        if (y < 0) {
+          setMessage("Pacman cannot move further");
+          return false;
+        } else {
+          pacManPlacement(xPos, y, rotate);
+        }
+        break;
+      default:
+        pacManPosition(0, 0);
+    }
+  };
+
   return (
     <div className="controls">
       <div className="controls-button">
         <Button text="place" handleClick={placePacman} />
-        <Button text="move" />
+        <Button text="move" handleClick={handleClick} />
         <Button text="left" handleClick={e => handleRotate(e.target.value)} />
         <Button text="right" handleClick={e => handleRotate(e.target.value)} />
       </div>
