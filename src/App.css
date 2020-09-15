@@ -1,6 +1,10 @@
 .App {
   position: relative;
   display: flex;
-  width: 100%;
+  justify-content: space-between;
   margin: 30px;
+}
+
+.controls-wrapper {
+  margin-right: 50px;
 }
