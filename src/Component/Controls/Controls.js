@@ -5,6 +5,7 @@ import Button from "../Button/Button";
 import "./controls.scss";
 
 const Controls = ({ message, setMessage }) => {
+  const [direction, setDirection] = useState("");
   const [isPlaced, setIsPlaced] = useState(false);
   const [xPos, setXPos] = useState(0);
   const [yPos, setYPos] = useState(0);
@@ -30,6 +31,7 @@ const Controls = ({ message, setMessage }) => {
     const pacMan = document.getElementById("pacman");
     pacMan.style.display = "block";
     setIsPlaced(true);
+    setDirection("East");
     setMessage("Pacman is placed");
 
     document.getElementById("place").disabled = true;
@@ -45,7 +47,6 @@ const Controls = ({ message, setMessage }) => {
         rotate = rotation - 90;
       }
 
-      setRotation(rotate);
       pacManPlacement(xPos, yPos, rotate);
     }
   };
@@ -63,6 +64,7 @@ const Controls = ({ message, setMessage }) => {
           setMessage("Pacman cannot move further");
           return false;
         } else {
+          setDirection("East");
           pacManPlacement(xPosition, yPos, rotate);
         }
         break;
@@ -72,6 +74,7 @@ const Controls = ({ message, setMessage }) => {
           setMessage("Pacman cannot move further");
           return false;
         } else {
+          setDirection("South");
           pacManPlacement(xPos, yPosition, rotate);
         }
         break;
@@ -81,6 +84,7 @@ const Controls = ({ message, setMessage }) => {
           setMessage("Pacman cannot move further");
           return false;
         } else {
+          setDirection("West");
           pacManPlacement(x, yPos, rotate);
         }
         break;
@@ -90,6 +94,7 @@ const Controls = ({ message, setMessage }) => {
           setMessage("Pacman cannot move further");
           return false;
         } else {
+          setDirection("North");
           pacManPlacement(xPos, y, rotate);
         }
         break;
@@ -108,7 +113,16 @@ const Controls = ({ message, setMessage }) => {
       </div>
 
       <div className="controls-status">
-        {isPlaced ? <h3>{message}</h3> : ""}
+        {isPlaced ? (
+          <>
+            <h3 className="controls-text">
+              Status: {xPos}, {yPos}, {direction}
+            </h3>
+            <h3 className="controls-text">{message}</h3>
+          </>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
