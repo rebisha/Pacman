@@ -22,4 +22,12 @@
       margin-left: 0;
     }
   }
+
+  &-select {
+    border: 1px solid $dark-blue;
+    border-radius: units(4px);
+    height: units(40px);
+    margin: units(5px);
+    outline: none;
+  }
 }

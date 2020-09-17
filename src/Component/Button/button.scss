@@ -1,5 +1,6 @@
 @import "../../assets/styles/variables";
 @import "../../assets/styles/functions";
+@import "../../assets/styles/mixins";
 
 .btn {
   background: $ice-blue;
@@ -7,7 +8,7 @@
   border-radius: units(4px);
   color: $blue;
   cursor: pointer;
-  font-size: units(16px);
+  font-size: units(12px);
   margin: units(10px);
   outline: none;
   padding: units(10px 15px);
@@ -16,5 +17,13 @@
 
   &:first-child {
     margin-left: 0;
+  }
+
+  @include medium() {
+    font-size: units(14px);
+  }
+
+  @include large() {
+    font-size: units(16px);
   }
 }

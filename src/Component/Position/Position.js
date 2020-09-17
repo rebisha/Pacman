@@ -4,9 +4,30 @@ import Button from "../Button/Button";
 
 import "./position.scss";
 
-const Position = ({ rotation, pacManPlacement, isPlaced, setMessage }) => {
+const compass = [
+  {
+    id: 0,
+    direction: "East",
+  },
+  {
+    id: 1,
+    direction: "South",
+  },
+  {
+    id: 2,
+    direction: "West",
+  },
+  {
+    id: 3,
+    direction: "North",
+  },
+];
+
+const Position = ({ pacManPlacement, isPlaced, setMessage }) => {
   const [xPosition, setXPosition] = useState(0);
   const [yPosition, setYPosition] = useState(0);
+  const [direction, setDirection] = useState("East");
+  const [rotate, setRotate] = useState(0);
 
   const handleXChange = e => {
     setXPosition(parseInt(e.target.value));
@@ -14,6 +35,11 @@ const Position = ({ rotation, pacManPlacement, isPlaced, setMessage }) => {
 
   const handleYChange = e => {
     setYPosition(parseInt(e.target.value));
+  };
+
+  const handleChange = e => {
+    setRotate(e.target.value * 90);
+    setDirection(e.target.children[e.target.value].text);
   };
 
   const setPosition = () => {
@@ -29,7 +55,7 @@ const Position = ({ rotation, pacManPlacement, isPlaced, setMessage }) => {
         "The value of X and Y should be greater than or equal to 0 and less than or equal to 4"
       );
     } else {
-      pacManPlacement(xPosition, yPosition, rotation);
+      pacManPlacement(xPosition, yPosition, rotate, direction);
     }
   };
 
@@ -47,6 +73,14 @@ const Position = ({ rotation, pacManPlacement, isPlaced, setMessage }) => {
         placeholder="Y"
         onChange={handleYChange}
       />
+
+      <select onChange={handleChange} className="position-select">
+        {compass.map(item => (
+          <option key={item.id} value={item.id}>
+            {item.direction}
+          </option>
+        ))}
+      </select>
       <Button text="set position" handleClick={setPosition} />
     </div>
   );

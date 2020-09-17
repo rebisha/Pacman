@@ -6,22 +6,23 @@ import Position from "../Position/Position";
 import "./controls.scss";
 
 const Controls = () => {
-  const [direction, setDirection] = useState("");
+  const [direction, setDirection] = useState("East");
   const [isPlaced, setIsPlaced] = useState(false);
   const [xPos, setXPos] = useState(0);
   const [yPos, setYPos] = useState(0);
   const [rotation, setRotation] = useState(0);
   const [message, setMessage] = useState("");
 
-  const pacManPosition = (x, y, rotate) => {
+  const pacManPosition = (x, y, rotate, direction) => {
     setXPos(x);
     setYPos(y);
     setRotation(rotate);
+    setDirection(direction);
   };
 
-  const pacManPlacement = (x, y, rotate) => {
+  const pacManPlacement = (x, y, rotate, direction) => {
     setMessage("");
-    pacManPosition(x, y, rotate);
+    pacManPosition(x, y, rotate, direction);
 
     const square = document.querySelector(".square");
     const squareStyle = getComputedStyle(square);
@@ -37,7 +38,6 @@ const Controls = () => {
     const pacMan = document.getElementById("pacman");
     pacMan.style.display = "block";
     setIsPlaced(true);
-    setDirection("East");
     setMessage("Pacman is placed");
 
     document.getElementById("place").disabled = true;
@@ -53,7 +53,7 @@ const Controls = () => {
         rotate = rotation - 90;
       }
 
-      pacManPlacement(xPos, yPos, rotate);
+      pacManPlacement(xPos, yPos, rotate, direction);
     }
   };
 
@@ -70,8 +70,7 @@ const Controls = () => {
           setMessage("Pacman cannot move further");
           return false;
         } else {
-          setDirection("East");
-          pacManPlacement(xPosition, yPos, rotate);
+          pacManPlacement(xPosition, yPos, rotate, "East");
         }
         break;
       case 1:
@@ -80,8 +79,7 @@ const Controls = () => {
           setMessage("Pacman cannot move further");
           return false;
         } else {
-          setDirection("South");
-          pacManPlacement(xPos, yPosition, rotate);
+          pacManPlacement(xPos, yPosition, rotate, "South");
         }
         break;
       case 2:
@@ -90,8 +88,7 @@ const Controls = () => {
           setMessage("Pacman cannot move further");
           return false;
         } else {
-          setDirection("West");
-          pacManPlacement(x, yPos, rotate);
+          pacManPlacement(x, yPos, rotate, "West");
         }
         break;
       case 3:
@@ -100,8 +97,7 @@ const Controls = () => {
           setMessage("Pacman cannot move further");
           return false;
         } else {
-          setDirection("North");
-          pacManPlacement(xPos, y, rotate);
+          pacManPlacement(xPos, y, rotate, "North");
         }
         break;
       default:
@@ -133,7 +129,6 @@ const Controls = () => {
 
       <div className="controls-position">
         <Position
-          rotation={rotation}
           pacManPlacement={pacManPlacement}
           isPlaced={isPlaced}
           setMessage={setMessage}
