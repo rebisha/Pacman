@@ -63,41 +63,45 @@ const Controls = () => {
       ((rotate %= 360) < 0 ? rotate + 360 : rotate) / 90
     );
 
-    switch (rotationDegree) {
-      case 0:
-        const xPosition = xPos + 1;
-        if (xPosition > 4) {
-          setMessage("Pacman cannot move further");
-        } else {
-          pacManPlacement(xPosition, yPos, rotate, "East");
-        }
-        break;
-      case 1:
-        const yPosition = yPos + 1;
-        if (yPosition > 4) {
-          setMessage("Pacman cannot move further");
-        } else {
-          pacManPlacement(xPos, yPosition, rotate, "South");
-        }
-        break;
-      case 2:
-        const x = xPos - 1;
-        if (x < 0) {
-          setMessage("Pacman cannot move further");
-        } else {
-          pacManPlacement(x, yPos, rotate, "West");
-        }
-        break;
-      case 3:
-        const y = yPos - 1;
-        if (y < 0) {
-          setMessage("Pacman cannot move further");
-        } else {
-          pacManPlacement(xPos, y, rotate, "North");
-        }
-        break;
-      default:
-        pacManPosition(0, 0);
+    if (isPlaced) {
+      switch (rotationDegree) {
+        case 0:
+          const xPosition = xPos + 1;
+          if (xPosition > 4) {
+            setMessage("Pacman cannot move further");
+          } else {
+            pacManPlacement(xPosition, yPos, rotate, "East");
+          }
+          break;
+        case 1:
+          const yPosition = yPos + 1;
+          if (yPosition > 4) {
+            setMessage("Pacman cannot move further");
+          } else {
+            pacManPlacement(xPos, yPosition, rotate, "South");
+          }
+          break;
+        case 2:
+          const x = xPos - 1;
+          if (x < 0) {
+            setMessage("Pacman cannot move further");
+          } else {
+            pacManPlacement(x, yPos, rotate, "West");
+          }
+          break;
+        case 3:
+          const y = yPos - 1;
+          if (y < 0) {
+            setMessage("Pacman cannot move further");
+          } else {
+            pacManPlacement(xPos, y, rotate, "North");
+          }
+          break;
+        default:
+          pacManPosition(0, 0);
+      }
+    } else {
+      setMessage("Place the pacman first");
     }
   };
 

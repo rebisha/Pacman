@@ -74,7 +74,11 @@ const Position = ({ pacManPlacement, isPlaced, setMessage }) => {
         onChange={handleYChange}
       />
 
-      <select onChange={handleChange} className="position-select">
+      <select
+        onChange={handleChange}
+        className="position-select"
+        data-testid="select"
+      >
         {compass.map(item => (
           <option key={item.id} value={item.id}>
             {item.direction}

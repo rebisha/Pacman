@@ -4,7 +4,13 @@ import "./button.scss";
 
 const Button = ({ handleClick, text }) => {
   return (
-    <button id={text} className="btn" onClick={handleClick} value={text}>
+    <button
+      id={text}
+      data-testid={text}
+      className="btn"
+      onClick={handleClick}
+      value={text}
+    >
       {text}
     </button>
   );
