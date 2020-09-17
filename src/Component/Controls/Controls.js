@@ -68,7 +68,6 @@ const Controls = () => {
         const xPosition = xPos + 1;
         if (xPosition > 4) {
           setMessage("Pacman cannot move further");
-          return false;
         } else {
           pacManPlacement(xPosition, yPos, rotate, "East");
         }
@@ -77,7 +76,6 @@ const Controls = () => {
         const yPosition = yPos + 1;
         if (yPosition > 4) {
           setMessage("Pacman cannot move further");
-          return false;
         } else {
           pacManPlacement(xPos, yPosition, rotate, "South");
         }
@@ -86,7 +84,6 @@ const Controls = () => {
         const x = xPos - 1;
         if (x < 0) {
           setMessage("Pacman cannot move further");
-          return false;
         } else {
           pacManPlacement(x, yPos, rotate, "West");
         }
@@ -95,7 +92,6 @@ const Controls = () => {
         const y = yPos - 1;
         if (y < 0) {
           setMessage("Pacman cannot move further");
-          return false;
         } else {
           pacManPlacement(xPos, y, rotate, "North");
         }
