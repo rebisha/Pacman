@@ -1,0 +1,46 @@
+@function calculate-rem($pixel) {
+    @return ($pixel / 16px) * 1em;
+}
+
+@function units($values) {
+    @if length($values)>1 {
+        $list: ();
+
+        @each $value in $values {
+            $unit: unit($value);
+
+            @if ($unit=="px") {
+                $list: append($list, calculate-rem($value));
+            }
+
+            @else if($value==0) {
+                $list: append($list, $value);
+            }
+
+            @else {
+                @warn "There is no unit conversion for #{$value} #{$unit}";
+            }
+        }
+
+        @return $list();
+    }
+
+    @else {
+        $unit: unit($values);
+
+        @if($unit=="px") {
+            @return calculate-rem($values);
+        }
+
+        @else if($values==0) {
+            @return $values;
+        }
+
+        @else {
+            @warn "There is no unit conversion for #{$values} #{$unit}";
+        }
+    }
+
+
+
+}

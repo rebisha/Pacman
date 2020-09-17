@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 // component
 import Controls from "./Component/Controls/Controls";
 import Grid from "./Component/Grid/Grid";
 import Pacman from "./Component/Pacman/Pacman";
 
-import "./App.css";
+import "./app.scss";
 
 const App = () => {
-  const [message, setMessage] = useState("");
-
   return (
-    <div className="App">
-      <div className="pacman-wrapper">
+    <div className="app">
+      <div className="app-pacman">
         <Grid />
         <Pacman />
       </div>
-      <div className="controls-wrapper">
-        <Controls message={message} setMessage={setMessage} />
+      <div className="app-controls">
+        <Controls />
       </div>
     </div>
   );

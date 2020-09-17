@@ -1,19 +1,20 @@
-// color variable
-$blue: #00008b;
-$dark-blue: #114f90;
-$ice-blue: #cce5ff;
+@import "../../assets/styles/variables";
+@import "../../assets/styles/functions";
 
 .btn {
   background: $ice-blue;
   border: 1px solid $dark-blue;
+  border-radius: units(4px);
   color: $blue;
   cursor: pointer;
-  border-radius: 4px;
-  text-align: center;
-  padding: 10px 15px;
-  margin: 10px;
-  font-size: 16px;
-  text-transform: capitalize;
+  font-size: units(16px);
+  margin: units(10px);
   outline: none;
-  width: 75px;
+  padding: units(10px 15px);
+  text-align: center;
+  text-transform: capitalize;
+
+  &:first-child {
+    margin-left: 0;
+  }
 }

@@ -1,0 +1,25 @@
+@import "../../assets/styles/variables";
+@import "../../assets/styles/functions";
+
+.position {
+  align-items: center;
+  display: flex;
+
+  &-label {
+    margin-right: units(5px);
+  }
+
+  &-input {
+    border: 1px solid $dark-blue;
+    border-radius: units(4px);
+    height: units(40px);
+    margin: units(5px);
+    outline: none;
+    padding: units(5px);
+    width: units(50px);
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

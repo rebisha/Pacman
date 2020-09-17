@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 // component
 import Button from "../Button/Button";
+import Position from "../Position/Position";
 
 import "./controls.scss";
 
-const Controls = ({ message, setMessage }) => {
+const Controls = () => {
   const [direction, setDirection] = useState("");
   const [isPlaced, setIsPlaced] = useState(false);
   const [xPos, setXPos] = useState(0);
   const [yPos, setYPos] = useState(0);
   const [rotation, setRotation] = useState(0);
+  const [message, setMessage] = useState("");
 
   const pacManPosition = (x, y, rotate) => {
     setXPos(x);
@@ -21,9 +23,13 @@ const Controls = ({ message, setMessage }) => {
     setMessage("");
     pacManPosition(x, y, rotate);
 
+    const square = document.querySelector(".square");
+    const squareStyle = getComputedStyle(square);
+    const squareWidth = squareStyle.minWidth;
+
     const pacMan = document.getElementById("pacman");
-    pacMan.style.transform = `translate(${x * 100}px, ${
-      y * 100
+    pacMan.style.transform = `translate(${x * parseInt(squareWidth)}px, ${
+      y * parseInt(squareWidth)
     }px) rotateZ(${rotate}deg)`;
   };
 
@@ -118,11 +124,20 @@ const Controls = ({ message, setMessage }) => {
             <h3 className="controls-text">
               Status: {xPos}, {yPos}, {direction}
             </h3>
-            <h3 className="controls-text">{message}</h3>
+            <h5 className="controls-text">{message}</h5>
           </>
         ) : (
-          ""
+          <h5 className="controls-text">{message}</h5>
         )}
+      </div>
+
+      <div className="controls-position">
+        <Position
+          rotation={rotation}
+          pacManPlacement={pacManPlacement}
+          isPlaced={isPlaced}
+          setMessage={setMessage}
+        />
       </div>
     </div>
   );

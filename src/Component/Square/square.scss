@@ -1,5 +1,18 @@
-.sqaure {
-  min-width: 100px;
-  height: 100px;
-  border: 1px solid black;
+@import "../../assets/styles/mixins";
+@import "../../assets/styles/variables";
+
+.square {
+  border: 1px solid $black;
+  height: 50px;
+  min-width: 50px;
+
+  @include medium() {
+    height: 80px;
+    min-width: 80px;
+  }
+
+  @include large() {
+    height: 100px;
+    min-width: 100px;
+  }
 }

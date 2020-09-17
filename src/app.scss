@@ -1,0 +1,33 @@
+@import "./assets/styles/functions";
+@import "./assets/styles/mixins";
+
+.app {
+  display: flex;
+  flex-direction: column;
+  margin: units(30px);
+
+  &-pacman {
+    position: relative;
+  }
+
+  &-controls {
+    width: auto;
+
+    @include medium() {
+      width: units(400px);
+    }
+
+    @include large() {
+      width: 40%;
+    }
+  }
+
+  @include medium() {
+    align-items: center;
+  }
+
+  @include large() {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
